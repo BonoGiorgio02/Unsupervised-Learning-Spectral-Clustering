@@ -5,6 +5,7 @@ clear all
 
 % Carica i dati
 load('Circle.mat');
+k=[10,20,40];
 labels = spectralcluster(X, 3, "SimilarityGraph","knn");
     
     % Visualizza i risultati

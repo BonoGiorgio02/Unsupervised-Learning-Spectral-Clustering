@@ -21,7 +21,7 @@ for k = k_values
     W= knn_graph(X,k);
 
     [L,D,W]= LDW(W); %from now on, matrices are sparses
-    [num_connected_components(i),eigenvectors, eigenvalues]= num_connect_comp(L); %dovrebbero essere 3?
+    [num_connected_components(i),eigenvectors, eigenvalues]= num_connect_comp(L,k); %dovrebbero essere 3?
     % problems:
     % - num_conn_comp= [2,1,1] dobbiamo usare questo come clusters? Non
     % dovrebberp essere 3?
@@ -30,7 +30,7 @@ for k = k_values
 
     %check what value of M to use by watching these graphs
     figure
-    subplot(2,2,1)
+    subplot(3,2,1)
     plot(linspace(1,20,20), diag(eigenvalues), MarkerIndices=6)
     hold on;
     plot(linspace(1,20,20), diag(eigenvalues), 'ro', 'MarkerFaceColor', 'w');  % Pallini rossi sugli autovalori
@@ -39,7 +39,7 @@ for k = k_values
     grid on
     title(sprintf("eingenvalues k=%g", k))
 
-    subplot(2,2,2)
+    subplot(3,2,2)
     plot(linspace(1,20,20), diag(eigenvalues)/max(diag(eigenvalues)), MarkerIndices=6)
     hold on;
     plot(linspace(1,20,20), diag(eigenvalues)/max(diag(eigenvalues)), 'ro', 'MarkerFaceColor', 'w');  % Pallini rossi sugli autovalori
@@ -55,11 +55,7 @@ for k = k_values
     [cluster_labels, cluster_centers] = kmeans(U,num_connected_components(i,1));
     db_cluster= dbscan(X, 0.5, 5,"Distance","minkowski") ;
 
-    subplot(2,2,3)
-    spy(W)
-
-
-    subplot(2,2,4)
+    subplot(3,2,[3,6])
     gscatter(X(:,1), X(:,2), cluster_labels, "rgb")
     titolo=sprintf("Dataset clustered with k=%g", k);
     title(titolo)
@@ -68,6 +64,5 @@ for k = k_values
      i=i+1;
 end
 
-other_cluster(X)
 
 disp("Termine")
