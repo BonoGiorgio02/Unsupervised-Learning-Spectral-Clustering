@@ -1,38 +1,23 @@
-function [lambda, v] = inverse_power_method(A, tol, max_iter)
-    % Inputs:
-    % A - symmetric matrix
-    % tol - tolerance for convergence
-    % max_iter - maximum number of iterations
+function [v, lambda] = inverse_power_method(A)
+    % A: Matrice per il quale trovare l'autovalore più piccolo
+    % max_iter: Numero massimo di iterazioni
+    % tol: Tolleranza per la convergenza
 
-    % Outputs:
-    % lambda - smallest eigenvalue
-    % v - corresponding eigenvector
+    max_iter=100;
+    tol=1e-6;
 
-    N = size(A, 1);
-    v = rand(N, 1); % Random initial vector
-    v = v / norm(v); % Normalize
+    n = size(A, 1);
+    v = rand(n, 1);         % Vettore casuale iniziale
+    v = v / norm(v);       % Normalizzazione
 
-    lambda = 0;
-    for iter = 1:max_iter
-        % Solve (A - mu*I) * z = v, where mu is close to the smallest eigenvalue
-        z = A \ v; % Solve linear system
-        v_next = z / norm(z); % Normalize
-
-        % Compute Rayleigh quotient for eigenvalue approximation
-        lambda_next = v_next' * A * v_next;
-
-        % Check for convergence
-        if abs(lambda_next - lambda) < tol
-            lambda = lambda_next;
-            v = v_next;
-            return;
+    for i = 1:max_iter
+        % Risolvi il sistema (A - lambda I)v = b per il vettore v
+        w = A \ v;          % Risoluzione di A*v = w
+        lambda = norm(w);   % Autovalore corrispondente
+        v = w / lambda;     % Nuovo autovettore normalizzato
+        
+        if norm(A * v - lambda * v) < tol  % Controllo di convergenza
+            break;
         end
-
-        % Update for next iteration
-        lambda = lambda_next;
-        v = v_next;
     end
-
-    error('Inverse Power Method did not converge');
 end
-
