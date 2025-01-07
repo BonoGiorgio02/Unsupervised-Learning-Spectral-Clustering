@@ -1,4 +1,4 @@
-function [x, lambda_old] = inverse_power_method(A)
+function [x, lambda] = inverse_power_method(A)
 % INVERSE_POWER_METHOD Trova il più piccolo autovalore e il corrispondente autovettore
 % di una matrice A usando il metodo della potenza inversa.
 
@@ -6,33 +6,41 @@ function [x, lambda_old] = inverse_power_method(A)
     tol = 1e-10; % Tolleranza
     maxIter = 1000; % Numero massimo di iterazioni
     
-    mu = 1e-4;
+    % Shift dinamico (opzionale, se necessario)
+    mu = 3e-3;
 
     if ~issparse(A)
         error('La matrice di input deve essere sparsa.');
     end
 
     n = size(A, 1);
-    x = rand(n, 1);
-    x = x / norm(x);
-    lambda_old = 0;
+    x = rand(n, 1); % Vettore iniziale casuale
+    x = x / norm(x); % Normalizzazione
+    lambda = 0; % Autovalore iniziale
     I = speye(n); % Matrice identità sparsa
-    B = A - mu * I;
+    B = A - mu * I; % Matrice shiftata
 
     for iter = 1:maxIter
+        % Risolvi il sistema lineare
         y = B \ x;
+
+        % Normalizza il nuovo vettore
         eigvec = y / norm(y);
+
+        % Calcola l'autovalore
         eigval = eigvec' * A * eigvec;
 
-        if abs(eigval - lambda_old) < tol
+        % Controlla la convergenza
+        if abs(eigval - lambda) < tol
             break;
         end
 
-        lambda_old = eigval;
+        % Aggiorna i valori per l'iterazione successiva
+        lambda = eigval;
         x = eigvec;
     end
 
     if iter == maxIter
-        warning('Il metodo non ha converguto entro il numero massimo di iterazioni.');
+        warning('Numero massimo ti iterazioni raggiunto');
     end
 end

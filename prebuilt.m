@@ -4,7 +4,7 @@ clear all
 
 
 % Carica i dati
-load('Circle.mat');
+load('Spiral.mat');
 k=[10,20,40];
 labels = spectralcluster(X, 3, "SimilarityGraph","knn");
     

@@ -14,7 +14,6 @@ function other_cluster(X)
     gscatter(X(:,1), X(:,2), cluster_idx)
     title('Gaussian Mixture Model Clustering')
     
-   
     
     % K-means Clustering (new addition)
     subplot(2,2,3);

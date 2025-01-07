@@ -25,5 +25,9 @@ function [eigenvectors, eigenvalues] = compute_eigenpairs(A, num_eigenvalues)
 
         % Applica la deflazione
         A_copy = A_copy - sparse((lambda) * (v * v'));
+        A_copy(abs(A_copy) < 1e-4) = 0;
+
+        % Rendi la matrice sparsa per rimuovere gli zero espliciti
+        A_copy = sparse(A_copy);
     end
 end

@@ -31,8 +31,8 @@ function [W] = knn_graph(X,k)
         end
     end
     if sum(diag(W)) ~= 0
-        disp("W has not all zero on the main diagonal")
-        quit
+        error("W has not all zero on the main diagonal")
+        
     end
 end
 

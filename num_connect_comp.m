@@ -8,14 +8,14 @@ n=20;
 
 %CAMBIARE EIGS CON INV_POWER + DEFLATION
 
-[eigenvectors, eigenvalues] = eigs(L,n, "smallestabs"); % Autovalori più piccoli
-tol= 0.03*max(diag(eigenvalues));
-num_connected_components = sum(abs(diag(eigenvalues)) < tol); %da mettere
+% [eigenvectors, eigenvalues] = eigs(L,n, "smallestabs"); % Autovalori più piccoli
+% tol= 0.03*max(diag(eigenvalues));
+% num_connected_components = sum(abs(diag(eigenvalues)) < tol); %da mettere
 
 
 
-% da PROVARE    
-% [eigenvectors, eigenvalues] = compute_eigenpairs(L,n);
-% num_connected_components = sum(abs(eigenvalues)<10e-6);
+% INVERSE POWER METHOD + DEFLACTION
+[eigenvectors, eigenvalues] = compute_eigenpairs(L,n);
+num_connected_components = sum(abs(eigenvalues)<10e-6);
 end
 
