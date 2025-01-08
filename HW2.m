@@ -25,7 +25,7 @@ for k = k_values
     Lsym= compute_Lsym(L,D);
 
     %fare un confronto tra L e Lsym
-    [num_connected_components(i),eigenvectors, eigenvalues]= num_connect_comp(Lsym); %dovrebbero essere 3?
+    [num_connected_components(i),eigenvectors, eigenvalues]= num_connect_comp(L); %dovrebbero essere 3?
     % problems:
     % - num_conn_comp= [2,1,1] dobbiamo usare questo come clusters? Non
     % dovrebberp essere 3?

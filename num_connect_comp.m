@@ -12,8 +12,6 @@ n=20;
 % tol= 0.03*max(diag(eigenvalues));
 % num_connected_components = sum(abs(diag(eigenvalues)) < tol); %da mettere
 
-
-
 % INVERSE POWER METHOD + DEFLACTION
 [eigenvectors, eigenvalues] = compute_eigenpairs(L,n);
 num_connected_components = sum(abs(eigenvalues)<10e-6);

@@ -3,8 +3,8 @@ function [x, lambda] = inverse_power_method(A)
 % di una matrice A usando il metodo della potenza inversa.
 
     % Parametri per la convergenza
-    tol = 1e-10; % Tolleranza
-    maxIter = 1000; % Numero massimo di iterazioni
+    tol = 1e-6; % Tolleranza
+    maxIter = 10000; % Numero massimo di iterazioni
     
     % Shift dinamico (opzionale, se necessario)
     mu = 3e-3;
