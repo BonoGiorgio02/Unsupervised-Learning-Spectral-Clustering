@@ -33,11 +33,11 @@ Demonstrates the power of Spectral Clustering compared to standard Euclidean dis
 ## Visualization
 
 <p align="center">
-  <img src="images/Spiral_L_40.png" alt="Spiral" width="350">
+  <img src="images/Spiral_L_40.png" alt="Spiral">
 </p>
 <p align="center">
-  <img src="images/Circles_L_20.png" alt="Circles" width="350">
+  <img src="images/Circles_L_20.png" alt="Circles">
 </p>
 <p align="center">
-  <img src="images/3D.L_20.png" alt="3D" width="350">
+  <img src="images/3D.L_20.png" alt="3D">
 </p>
